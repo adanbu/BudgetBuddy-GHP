@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+        <title>Home Screen</title>
+      <script type="module" crossorigin src="/assets/userHome-dGqVgaG1.js"></script>
+      <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-9p4a8sJU.js">
+      <link rel="modulepreload" crossorigin href="/assets/navigationUserScreen-2NQdNthr.js">
+      <link rel="stylesheet" crossorigin href="/assets/style-Rv-VYLeS.css">
+    </head>
+
+    <div id="navbar-container"></div>
+    <p id ="welcomeMsgUser" class="container font-bold text-2xl md:ml-52 sm:ml-8 ml-8 mt-8">Welcome Bonnie,</p>
+     <!-- Responsive Navigation Overlay -->
+     <!-- <div
+        id="menu-overlay"
+        class="md:hidden fixed inset-0 bg-black bg-opacity-50 z-50 hidden"
+     ></div> -->
+
+    <body class="dark:bg-gray-700">
+        <section class="" id="hero">
+            <!--Income, spendings  section-->
+            <div class="container flex-initial  flex  flex-col items-center px-4 mx-auto mt-8 mb-6 space-x-2 space-y-0 md:space-y-0 text-lg  py-2">
+                <p class="dark:text-white mb-2 font-bold">You've budgeted $6000 for this month</p>
+                <div class="flex flex-col gap-2 sm:flex-row">
+                    
+                
+                    
+                    <div class=" items-center relative flex-initial w-40 md:w-60 md:h-32 flex flex-col text-center shadow p-2  block-inline  mx-auto overflow-hidden  dark:bg-gray-900 dark:text-white dark:text-xl bg-gray-100 font-bold">
+                        <div class="flex flex-row items-center mt-4"> 
+                            <img class="w-8 block-inline" src="/assets/incomeIcon-7bE20GPG.png"> 
+                            <p class="mt-4 ml-2">Income</p> 
+                        </div>
+                        <div id="incomeCnt" class="text-lime-700 dark:text-green-500 mt-2">$10000</div>
+                    </div>
+                    <div class=" items-center relative flex flex-initial w-40 md:w-60 md:h-32 flex-col text-center shadow p-2  mx-auto  dark:bg-gray-900 dark:text-white dark:text-xl font-bold bg-gray-100">
+                        <div class="flex flex-row items-center mt-4"> 
+                            <img class="w-8 block-inline" src="/assets/Expenses--eT2hI3B.png"> 
+                            <p  class="mt-4 ml-2">Expenses</p> 
+                        </div>
+                        <div id="expansesCnt" class="text-rose-600 dark:text-red-700 mt-2">$2000</div>     
+                    </div>
+                    <div class=" relative flex flex-col flex-initial w-40 md:w-60 md:h-32 text-center shadow p-2  mx-auto bg-gray-100 dark:bg-gray-900 dark:text-white dark:text-xl font-bold"> 
+                        <!-- <div class="text-blue-500 dark:to-blue-700">$4000</div> -->
+                        <div class="flex flex-row items-center mt-4"> 
+                            <img class="w-8 ml-6 mt-4 block-inline" src="data:image/png;base64,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"> 
+                            <p  class="mt-4 ml-1">Budget remain</p> 
+                        </div>
+                        <div id="budgetCnt" class="text-blue-500  dark:to-blue-700">$4000</div>
+                    </div>
+                </div>
+            </div>
+            <!--features panel -->
+            <div class="container flex flex-col gap-7 items-center mx-auto ">
+                <!-- expenses and goals-->
+                <div class=" container flex flex-col justify-center md:flex-row space-x-2 mx-4 px-2 ">
+                    <!--expenses-->
+                    
+                        <div class=" container flex flex-col text-center p-6 my-2 shadow-lg rounded-lg overflow-hidden bg-gray-200 dark:bg-gray-900 max-w-[500px] max-h-[500px]">
+                            <a href="#" class="py-3 px-5 bg-gray-100 dark:text-white dark:bg-gray-700 font-bold text-center">Expenses Tracking</a>
+                        
+                            <canvas class="container flex p-10 dark:bg-gray-900" id="chartDoughnut"></canvas>
+                          </div>
+                          
+                          <!-- Required chart.js -->
+                          <!-- <script src="../scripts/doughnutChart.js"></script> -->
+                          <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+                          <!-- Chart doughnut -->
+                          <!-- <script>
+                            const dataDoughnut = {
+                              labels: ["Shopping", "Food", "Transportation","Loan","Other"],
+                              datasets: [
+                                {
+                                  
+                                  data: [100, 100, 100,100,100],
+                                  backgroundColor: [
+                                    "rgb(133, 105, 241)",
+                                    "rgb(164, 101, 241)",
+                                    "rgb(101, 143, 241)",
+                                    "rgb(200, 100,241)",
+                                    "rgb(11, 81,96)",
+
+                                  ],
+                                  hoverOffset: 4,
+                                },
+                              ],
+                            };
+                          
+                            const configDoughnut = {
+                                type: "doughnut",
+                                data: dataDoughnut,
+                                options: {
+                                    plugins: {
+                                        
+                                       
+                                        doughnutlabel: {
+                                            labels: [{
+                                                text: 'Total', // Text to display
+                                                font: {
+                                                size: '20' // Font size
+                                                },
+                                                color: '#000', // Text color
+                                            }]
+                                        }
+                                    }
+                                },
+                            };
+                          
+                            var chartBar = new Chart(
+                              document.getElementById("chartDoughnut"),
+                              configDoughnut
+                            );
+                          </script> -->
+                    
+                    <!--goals-->
+                    <div id="GoalsContainer" class="container flex flex-col p-6 my-2 mx-auto shadow-lg rounded-lg overflow-hidden bg-gray-200 dark:bg-gray-900 max-w-[500px] max-h-[500px]">
+                      <a href="#" class="py-3 px-5 bg-gray-100 dark:bg-gray-700 dark:text-white font-bold text-center">Goals Tracking</a>
+                      <div class="goal-container"></div>
+                  </div>
+
+
+                    <!-- <div id="GoalsContainer" class="container flex flex-col  p-6 my-2 mx-auto shadow-lg rounded-lg overflow-hidden bg-gray-200 dark:bg-gray-900 max-w-[500px] max-h-[500px]"> 
+                        <a href="#" class="py-3 px-5 bg-gray-100 dark:bg-gray-700 dark:text-white font-bold text-center">Goals Tracking</a>
+                        <div class="shadow p-2 dark:text-white">Buy BMW<br>Goal: $50000<br>Saved: $22500<br>
+                            <div class="w-full bg-gray-50 rounded-full dark:bg-gray-700 shadow">
+                                <div class="bg-lime-500 text-xs font-medium text-gray-50 text-center p-0.5 leading-none rounded-full" style="width: 45%"> 45%</div>
+                            </div>
+                        </div>
+                        <div class="shadow p-2 dark:text-white">Vacation to Hawaii<br>Goal: $6000<br>Saved: $4800<br>
+                            <div class="w-full bg-gray-50 rounded-full dark:bg-gray-700 shadow">
+                                <div class="bg-lime-500 text-xs font-medium text-gray-50 text-center p-0.5 leading-none rounded-full" style="width: 80%"> 80%</div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <!--end of goals section-->  
+                </div>
+                <!-- upcoming bills and transactions-->
+                <!-- upcoming bills and transactions-->
+                  <div class="container flex flex-col space-x-2 mx-4 px-2">
+                    <!-- Transcation activity-->
+                    <div class="container flex flex-col p-2 my-2 mx-auto shadow-lg rounded-lg overflow-hidden dark:bg-gray-900 dark:border-solid dark:border-white max-w-[1200px] bg-gray-200"> 
+                        <a href="#" class="py-3 px-5 bg-gray-100 text-center dark:text-2xl font-bold dark:text-white dark:bg-gray-700">Latest Expenses</a>
+                        <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+                            <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+                                <div class="overflow-hidden">
+                                    <table class="min-w-full text-left text-sm font-light dark:text-gray-400">
+                                        <thead class="border-b bg-white font-medium dark:bg-gray-700 dark:text-gray-400">
+                                            <tr>
+                                                <th scope="col" class="px-6 py-4">Date</th>
+                                                <th scope="col" class="px-6 py-4">Payee</th>
+                                                <th scope="col" class="px-6 py-4">Category</th>
+                                                <th scope="col" class="px-6 py-4">Amount</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="latestExpensesBody">
+                                            <!-- Table rows for expenses will be added here dynamically -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+
+
+
+
+                
+                <!-- <div class=" container flex flex-col space-x-2 mx-4 px-2"> -->
+                    <!-- Transcation activity-->
+                    <!-- <div class="container flex flex-col p-2 my-2 mx-auto shadow-lg rounded-lg overflow-hidden dark:bg-gray-900 dark:border-solid dark:border-white max-w-[1200px] bg-gray-200"> 
+                        <a href="#" class="py-3 px-5 bg-gray-100 text-center dark:text-2xl font-bold dark:text-white dark:bg-gray-700">Latest Expenses</a>
+                            <div class="overflow-x-auto sm:-mx-6 lg:-mx-8 ">
+                              <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8 ">
+                                <div class="overflow-hidden ">
+                                  <table class="min-w-full text-left text-sm font-light dark:text-gray-400">
+                                    <thead
+                                      class="border-b bg-white font-medium dark:bg-gray-700 dark:text-gray-400">
+                                      <tr>
+                                        <th scope="col" class="px-6 py-4">Date</th>
+                                        <th scope="col" class="px-6 py-4">Payee</th>
+                                        <th scope="col" class="px-6 py-4">Category</th>
+                                        <th scope="col" class="px-6 py-4">Amount</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr
+                                        class="border-b bg-neutral-100 dark:bg-gray-900 dark:border-gray-700">
+                                        <td class="whitespace-nowrap px-6 py-4 font-medium">08/02/2024</td>
+                                        <td class="whitespace-nowrap px-6 py-4 dark:text-white">Shufersal</td>
+                                        <td class="whitespace-nowrap px-6 py-4 dark:text-white">Food</td>
+                                        <td class="whitespace-nowrap px-6 py-4 dark:text-white">$30</td>
+                                      </tr>
+                                      <tr
+                                        class="border-b bg-white dark:bg-gray-900 dark:border-gray-700 ">
+                                        <td class="whitespace-nowrap px-6 py-4 font-medium">01/02/2024</td>
+                                        <td class="whitespace-nowrap px-6 py-4 dark:text-white">Mango</td>
+                                        <td class="whitespace-nowrap px-6 py-4 dark:text-white">Shopping</td>
+                                        <td class="whitespace-nowrap px-6 py-4 dark:text-white">$110</td>
+                                      </tr>
+                                      <tr
+                                      class="border-b bg-neutral-100 dark:bg-gray-900 dark:border-gray-700">
+                                      <td class="whitespace-nowrap px-6 py-4 font-medium">01/02/2024</td>
+                                      <td class="whitespace-nowrap px-6 py-4 dark:text-white">Buses ltd</td>
+                                      <td class="whitespace-nowrap px-6 py-4 dark:text-white">Transportaion</td>
+                                      <td class="whitespace-nowrap px-6 py-4 dark:text-white">$3</td>
+                                    </tr>
+                                     
+                                    </tbody>
+                                  </table>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                    </div> -->
+                    <!--End of Latest transactions-->
+                    <!--Upcoming expenses -->
+                   
+                    <!--End of Upcoming expenses Table-->
+                </div>
+            </div>
+        </section>
+
+    </body>
+    <footer class="bg-white dark:bg-gray-900 w-full">
+      <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
+        <div class="md:flex md:justify-between">
+          <div class="mb-6 md:mb-0">
+            <a href="#" class="dark:text-white text-black font-bold text-xl">Budget Buddy</a>
+  
+            </a>
+          </div>
+          <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
+            <div>
+              <h2
+                class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white"
+              >
+                Resources
+              </h2>
+              <ul class="text-gray-500 dark:text-gray-400 font-medium">
+                <li class="mb-4">
+                  <a href="#" class="hover:underline"
+                    >Budget Buddy</a
+                  >
+                </li>
+                <li>
+                  <a href="#" class="hover:underline"
+                    >Tailwind CSS</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h2
+                class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white"
+              >
+                Follow us
+              </h2>
+              <ul class="text-gray-500 dark:text-gray-400 font-medium">
+                <li class="mb-4">
+                  <a
+                    href="https://github.com/razimograbi/Personal-Finance-Manager"
+                    class="hover:underline"
+                    >Github</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href=""
+                    class="hover:underline"
+                    >Discord</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h2
+                class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white"
+              >
+                Legal
+              </h2>
+              <ul class="text-gray-500 dark:text-gray-400 font-medium">
+                <li class="mb-4">
+                  <a href="#" class="hover:underline">Privacy Policy</a>
+                </li>
+                <li>
+                  <a href="#" class="hover:underline">Terms &amp; Conditions</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <hr
+          class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8"
+        />
+        <div class="sm:flex sm:items-center sm:justify-between">
+          <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400"
+            >© 2023
+            <a href="" class="hover:underline">Budget Buddy™</a
+            >. All Rights Reserved.
+          </span>
+          <div class="flex mt-4 sm:justify-center sm:mt-0">
+            <a
+              href="#"
+              class="text-gray-500 hover:text-gray-900 dark:hover:text-white"
+            >
+              <svg
+                class="w-4 h-4"
+                aria-hidden="true"
+                xmlns=""
+                fill="currentColor"
+                viewBox="0 0 8 19"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M6.135 3H8V0H6.135a4.147 4.147 0 0 0-4.142 4.142V6H0v3h2v9.938h3V9h2.021l.592-3H5V3.591A.6.6 0 0 1 5.592 3h.543Z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+              <span class="sr-only">Facebook page</span>
+            </a>
+            <a
+              href="#"
+              class="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5"
+            >
+              <svg
+                class="w-4 h-4"
+                aria-hidden="true"
+                xmlns=""
+                fill="currentColor"
+                viewBox="0 0 21 16"
+              >
+                <path
+                  d="M16.942 1.556a16.3 16.3 0 0 0-4.126-1.3 12.04 12.04 0 0 0-.529 1.1 15.175 15.175 0 0 0-4.573 0 11.585 11.585 0 0 0-.535-1.1 16.274 16.274 0 0 0-4.129 1.3A17.392 17.392 0 0 0 .182 13.218a15.785 15.785 0 0 0 4.963 2.521c.41-.564.773-1.16 1.084-1.785a10.63 10.63 0 0 1-1.706-.83c.143-.106.283-.217.418-.33a11.664 11.664 0 0 0 10.118 0c.137.113.277.224.418.33-.544.328-1.116.606-1.71.832a12.52 12.52 0 0 0 1.084 1.785 16.46 16.46 0 0 0 5.064-2.595 17.286 17.286 0 0 0-2.973-11.59ZM6.678 10.813a1.941 1.941 0 0 1-1.8-2.045 1.93 1.93 0 0 1 1.8-2.047 1.919 1.919 0 0 1 1.8 2.047 1.93 1.93 0 0 1-1.8 2.045Zm6.644 0a1.94 1.94 0 0 1-1.8-2.045 1.93 1.93 0 0 1 1.8-2.047 1.918 1.918 0 0 1 1.8 2.047 1.93 1.93 0 0 1-1.8 2.045Z"
+                />
+              </svg>
+              <span class="sr-only">Discord community</span>
+            </a>
+            <a
+              href="#"
+              class="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5"
+            >
+              <svg
+                class="w-4 h-4"
+                aria-hidden="true"
+                xmlns=""
+                fill="currentColor"
+                viewBox="0 0 20 17"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M20 1.892a8.178 8.178 0 0 1-2.355.635 4.074 4.074 0 0 0 1.8-2.235 8.344 8.344 0 0 1-2.605.98A4.13 4.13 0 0 0 13.85 0a4.068 4.068 0 0 0-4.1 4.038 4 4 0 0 0 .105.919A11.705 11.705 0 0 1 1.4.734a4.006 4.006 0 0 0 1.268 5.392 4.165 4.165 0 0 1-1.859-.5v.05A4.057 4.057 0 0 0 4.1 9.635a4.19 4.19 0 0 1-1.856.07 4.108 4.108 0 0 0 3.831 2.807A8.36 8.36 0 0 1 0 14.184 11.732 11.732 0 0 0 6.291 16 11.502 11.502 0 0 0 17.964 4.5c0-.177 0-.35-.012-.523A8.143 8.143 0 0 0 20 1.892Z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+              <span class="sr-only">Twitter page</span>
+            </a>
+            <a
+              href="#"
+              class="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5"
+            >
+              <svg
+                class="w-4 h-4"
+                aria-hidden="true"
+                xmlns=""
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10 .333A9.911 9.911 0 0 0 6.866 19.65c.5.092.678-.215.678-.477 0-.237-.01-1.017-.014-1.845-2.757.6-3.338-1.169-3.338-1.169a2.627 2.627 0 0 0-1.1-1.451c-.9-.615.07-.6.07-.6a2.084 2.084 0 0 1 1.518 1.021 2.11 2.11 0 0 0 2.884.823c.044-.503.268-.973.63-1.325-2.2-.25-4.516-1.1-4.516-4.9A3.832 3.832 0 0 1 4.7 7.068a3.56 3.56 0 0 1 .095-2.623s.832-.266 2.726 1.016a9.409 9.409 0 0 1 4.962 0c1.89-1.282 2.717-1.016 2.717-1.016.366.83.402 1.768.1 2.623a3.827 3.827 0 0 1 1.02 2.659c0 3.807-2.319 4.644-4.525 4.889a2.366 2.366 0 0 1 .673 1.834c0 1.326-.012 2.394-.012 2.72 0 .263.18.572.681.475A9.911 9.911 0 0 0 10 .333Z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+              <span class="sr-only">GitHub account</span>
+            </a>
+            <a
+              href="#"
+              class="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5"
+            >
+              <svg
+                class="w-4 h-4"
+                aria-hidden="true"
+                xmlns=""
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10 0a10 10 0 1 0 10 10A10.009 10.009 0 0 0 10 0Zm6.613 4.614a8.523 8.523 0 0 1 1.93 5.32 20.094 20.094 0 0 0-5.949-.274c-.059-.149-.122-.292-.184-.441a23.879 23.879 0 0 0-.566-1.239 11.41 11.41 0 0 0 4.769-3.366ZM8 1.707a8.821 8.821 0 0 1 2-.238 8.5 8.5 0 0 1 5.664 2.152 9.608 9.608 0 0 1-4.476 3.087A45.758 45.758 0 0 0 8 1.707ZM1.642 8.262a8.57 8.57 0 0 1 4.73-5.981A53.998 53.998 0 0 1 9.54 7.222a32.078 32.078 0 0 1-7.9 1.04h.002Zm2.01 7.46a8.51 8.51 0 0 1-2.2-5.707v-.262a31.64 31.64 0 0 0 8.777-1.219c.243.477.477.964.692 1.449-.114.032-.227.067-.336.1a13.569 13.569 0 0 0-6.942 5.636l.009.003ZM10 18.556a8.508 8.508 0 0 1-5.243-1.8 11.717 11.717 0 0 1 6.7-5.332.509.509 0 0 1 .055-.02 35.65 35.65 0 0 1 1.819 6.476 8.476 8.476 0 0 1-3.331.676Zm4.772-1.462A37.232 37.232 0 0 0 13.113 11a12.513 12.513 0 0 1 5.321.364 8.56 8.56 0 0 1-3.66 5.73h-.002Z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+              <span class="sr-only">Dribbble account</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- <script src="../scripts/applyDarkTheme.js" defer></script> -->
+   
+
+</html>
